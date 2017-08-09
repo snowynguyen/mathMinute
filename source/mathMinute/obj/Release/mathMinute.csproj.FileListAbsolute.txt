@@ -1,0 +1,8 @@
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\bin\Release\mathMinute.exe
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\bin\Release\mathMinute.pdb
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.MainForm.resources
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.Gameplay.resources
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.Properties.Resources.resources
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.csproj.GenerateResource.Cache
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.exe
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.pdb
