@@ -9,7 +9,7 @@ Facebook profile: fb.com/nhatnam2k3.
 Offical website: www.dkteam.tk.
 Offical fanpage: fb.com/DeathKingTeam.
 We guarantee that our products is safe, virusless and harmless.
-We don't provide responsibility for products that weren't posted on my offical Facebook profile/fanpage or website.
+We don't provide responsibility for products that weren't posted on our offical Facebook profile/fanpage or website.
 --------------------------------
 Changes in version 1.1:
 - Show correct answer if player's answer is wrong
