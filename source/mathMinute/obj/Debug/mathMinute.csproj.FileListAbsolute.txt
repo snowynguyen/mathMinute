@@ -1,0 +1,9 @@
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\bin\Debug\mathMinute.exe
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\bin\Debug\mathMinute.pdb
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Debug\mathMinute.MainForm.resources
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Debug\mathMinute.Gameplay.resources
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Debug\mathMinute.Properties.Resources.resources
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Debug\mathMinute.csproj.GenerateResource.Cache
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Debug\mathMinute.exe
+c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Debug\mathMinute.pdb
+C:\Users\PC01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Debug\mathMinute.csprojResolveAssemblyReference.cache
