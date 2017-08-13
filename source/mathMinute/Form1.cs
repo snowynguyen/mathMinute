@@ -17,7 +17,9 @@ namespace mathMinute
 			"Bấm Tab đễ di chuyển đến ô kế tiếp, Shift-Tab để về ô trước",
 			"Để nộp kết quả lập tức mà không cần đợi hết giờ, nhấn Enter"
 		};
-		int curRule = 0;
+		public int curRule = 0;
+		public int curLang = 0;
+		public Languages Lang = new Languages();
 
 		public MainForm()
 		{
@@ -50,7 +52,7 @@ namespace mathMinute
 			}
 			else
 			{
-				Gameplay gameplay = new Gameplay(max, min, time, counts, operators);
+				Gameplay gameplay = new Gameplay(max, min, time, counts, operators, curLang);
 			}
 		}
 
@@ -58,6 +60,66 @@ namespace mathMinute
 		{
 			curRule = (curRule + 1) % rules.Count;
 			lblRules.Text = rules[curRule];
+		}
+
+		private void MainForm_SizeChanged(object sender, EventArgs e)
+		{
+			this.Size = new Size(384, 358);
+		}
+
+		private void changeToEnglish()
+		{
+			label2.Text = Lang.textCalculationRange.English;
+			lblMin.Text = Lang.textMin.English;
+			lblMax.Text = Lang.textMax.English;
+			lblTime.Text = Lang.textTime.English;
+			lblCounts.Text = Lang.textCount.English;
+			label3.Text = Lang.textOpeators.English;
+			ckbAdd.Text = Lang.textAdd.English;
+			ckbSubtract.Text = Lang.textSubtract.English;
+			ckbMultip.Text = Lang.textMuliply.English;
+			ckbDivide.Text = Lang.textDivide.English;
+			btnPlay.Text = Lang.textStart.English;
+			rules = new List<string>();
+			for (int i = 0; i < Lang.textRules.Count; i++)
+			{
+				rules.Add(Lang.textRules[i].English);
+			}
+		}
+
+		private void changeToVietnamese()
+		{
+			label2.Text = Lang.textCalculationRange.Vietnamese;
+			lblMin.Text = Lang.textMin.Vietnamese;
+			lblMax.Text = Lang.textMax.Vietnamese;
+			lblTime.Text = Lang.textTime.Vietnamese;
+			lblCounts.Text = Lang.textCount.Vietnamese;
+			label3.Text = Lang.textOpeators.Vietnamese;
+			ckbAdd.Text = Lang.textAdd.Vietnamese;
+			ckbSubtract.Text = Lang.textSubtract.Vietnamese;
+			ckbMultip.Text = Lang.textMuliply.Vietnamese;
+			ckbDivide.Text = Lang.textDivide.Vietnamese;
+			btnPlay.Text = Lang.textStart.Vietnamese;
+			rules = new List<string>();
+			for (int i = 0; i < Lang.textRules.Count; i++)
+			{
+				rules.Add(Lang.textRules[i].Vietnamese);
+			}
+		}
+
+		private void changeLang_Click(object sender, EventArgs e)
+		{
+			curLang = (curLang + 1) % 2;
+			if (curLang == 0)
+			{
+				changeToVietnamese();
+				changeLang.Text = "English interface";
+			}
+			else
+			{
+				changeToEnglish();
+				changeLang.Text = "Giao diện tiếng Việt";
+			}
 		}
 	}
 }

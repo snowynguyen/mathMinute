@@ -13,16 +13,22 @@ namespace mathMinute
 	{
 		private int Max, Min, Time, Counts, Score;
 		DateTime beginTime, endTime;
+		TimeSpan timeLeft;
 		private List<char> Operators;
 		private List<List<int>> Questions;
 		private List<TextBox> Answers;
 		private List<Label> Quess;
+		static Languages lang = new Languages();
+		static int lan = 0;
 		Random rd;
 
-		public Gameplay(int max, int min, int time, int counts, List<bool> operators)
+		public Gameplay(int max, int min, int time, int counts, List<bool> operators, int lang)
 		{
 			InitializeComponent();
-			Max = max; Min = min; Time = time; Counts = counts; Score = 0;
+			beginTime = new DateTime();
+			endTime = new DateTime();
+			timeLeft = new TimeSpan();
+			Max = max; Min = min; Time = time; Counts = counts; Score = 0; lan = lang;
 			Operators = new List<char>();
 			Questions = new List<List<int>>();
 			Answers = new List<TextBox>();
@@ -31,7 +37,6 @@ namespace mathMinute
 			if (operators[1]) Operators.Add('-');
 			if (operators[2]) Operators.Add('*');
 			if (operators[3]) Operators.Add('/');
-			timer.Interval = time * 1000;
 			QuestionsGenerator();
 			go();
 		}
@@ -40,13 +45,26 @@ namespace mathMinute
 		{
 			if (e.KeyChar == (char)Keys.Return)
 			{
-				stopTime(null, null);
+				stopTime();
 			}
+		}
+
+		private void Gameplay_SizeChanged(object sender, EventArgs e)
+		{
+			this.Size = new Size(287, 435);
 		}
 
 		private void timing_Tick(object sender, EventArgs e)
 		{
-			this.Text = "Gameplay (" + (endTime - DateTime.Now).Seconds.ToString() + "." + ((endTime - DateTime.Now).Milliseconds / 10).ToString() + "s)";
+			if (DateTime.Now >= endTime)
+			{
+				stopTime();
+			}
+			else
+			{
+				timeLeft = endTime - DateTime.Now;
+				this.Text = "Gameplay (" + timeLeft.Minutes.ToString() + ":" + timeLeft.Seconds.ToString() + "." + (timeLeft.Milliseconds / 100).ToString() + "s)";
+			}
 		}
 
 		private void QuestionsGenerator() {
@@ -92,16 +110,19 @@ namespace mathMinute
 			}
 		}
 
-		private void stopTime(object sender, EventArgs e)
+		private void stopTime()
 		{
-			timer.Stop();
 			timing.Stop();
-			int wrongs = 0;
+			int wrongs = 0, Answered = Counts; double ExpectedTime = 0;
 			for (int i = 0; i < Counts; i++)
 			{
 				Answers[i].Enabled = false;
 				Quess[i].Location = new Point(Quess[i].Location.X, Quess[i].Location.Y + wrongs * 25);
 				Answers[i].Location = new Point(Answers[i].Location.X, Answers[i].Location.Y + wrongs * 25);
+				if (Answers[i].Text == "" || Answers[i].Text == null)
+				{
+					Answered--;
+				}
 				if (Answers[i].Text == Questions[i][3].ToString())
 				{
 					Score++;
@@ -117,9 +138,45 @@ namespace mathMinute
 					pnlGameplay.Controls.Add(correctAns);
 					wrongs++;
 				}
+				switch (Questions[i][0]) {
+					case 0:
+						ExpectedTime += 1.0 * Math.Log10((Max * 2 - Min + Questions[i][0] + Questions[i][1]) / 4);
+						break;
+					case 1:
+						ExpectedTime += 1.0 * Math.Log10((Max * 3 - Min * 1.5 + Questions[i][0] + Questions[i][1]) / 5);
+						break;
+					case 2:
+						ExpectedTime += 1.5 * Math.Sqrt(Math.Log10(Questions[i][1]) * Math.Log10(Questions[i][2]) * Math.Log10(Max) * Math.Log10(Max - Min));
+						break;
+					case 3:
+						ExpectedTime += 1.5 * Math.Sqrt(Math.Log10(Questions[i][1]) * Math.Log10(Questions[i][2]) * Math.Log10(Max) * Math.Log10(Max - Min / 2));
+						break;
+				}
 			}
-			this.Text += ". Finished. Score: " + Score.ToString() + "/" + Counts.ToString();
-			MessageBox.Show("Score: " + Score.ToString() + "/" + Counts.ToString(),"Score");
+			double YourTimeLeft = -1, YourTime = -1;
+			try
+			{
+				YourTimeLeft = timeLeft.Ticks / 10000000.0;
+			}
+			catch (OverflowException)
+			{
+				YourTimeLeft = short.MaxValue;
+			}
+			YourTime = Time - YourTimeLeft;
+			double Accurate = Answered > 0 ? 1.0 * Score / Answered : 0;
+			double timeBonus = ((0.25 * Time * Answered / Counts + 0.75 * ExpectedTime) - YourTime) * Score / Counts;
+			timeBonus = timeBonus < 0 ? 0 : timeBonus;
+			double FinalScore = (Score + timeBonus) * Accurate;
+			this.Text += ". Correct: " + Score.ToString() + "/" + Counts.ToString() + ". Score: " + FinalScore.ToString("#0.00");
+			MessageBox.Show(
+				(lan == 0 ? lang.textAnswered.Vietnamese : lang.textAnswered.English) + ": " + Answered.ToString() + "\n" +
+				(lan == 0 ? lang.textCorrect.Vietnamese : lang.textCorrect.English) + ": " + Score.ToString() + "\n" +
+				(lan == 0 ? lang.textAccuracy.Vietnamese : lang.textAccuracy.English) + ": " + Accurate.ToString("#0.0#%") + "\n" +
+				(lan == 0 ? lang.textTimeLeft.Vietnamese : lang.textTimeLeft.English) + ": " + YourTimeLeft.ToString("#0.0") + "s\n" +
+				(lan == 0 ? lang.textTimeBonus.Vietnamese : lang.textTimeBonus.English) + ": " + timeBonus.ToString("#0.00") + "\n" +
+				(lan == 0 ? lang.textFinalScore.Vietnamese : lang.textFinalScore.English) + ": " + FinalScore.ToString("#0.00"),
+				"Score"
+			);
 		}
 
 		private void displayQuestions()
@@ -141,8 +198,8 @@ namespace mathMinute
 				lbl.Text += Questions[i][2].ToString() + " = ";
 				lbl.Location = new Point(10, currentHeight);
 				lbl.Size = new Size(80, 20);
-				Answers[i].Location = new Point(175, currentHeight - 3);
-				Answers[i].Size = new Size(75, 20);
+				Answers[i].Location = new Point(210, currentHeight - 3);
+				Answers[i].Size = new Size(70, 20);
 				Answers[i].TabIndex = i;
 				Answers[i].KeyPress += HandleEnter;
 				pnlGameplay.Controls.Add(lbl);
@@ -158,7 +215,6 @@ namespace mathMinute
 			beginTime = DateTime.Now;
 			endTime = beginTime.AddSeconds(Time);
 			timing.Start();
-			timer.Start();
 		}
 	}
 }

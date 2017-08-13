@@ -6,3 +6,4 @@ c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Re
 c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.csproj.GenerateResource.Cache
 c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.exe
 c:\users\pc01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.pdb
+C:\Users\PC01\documents\visual studio 2015\Projects\mathMinute\mathMinute\obj\Release\mathMinute.csprojResolveAssemblyReference.cache
