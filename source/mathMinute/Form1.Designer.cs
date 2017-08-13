@@ -31,8 +31,9 @@
 			this.components = new System.ComponentModel.Container();
 			this.label1 = new System.Windows.Forms.Label();
 			this.pnlMainMenu = new System.Windows.Forms.Panel();
+			this.changeLang = new System.Windows.Forms.Button();
 			this.lblRules = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnPlay = new System.Windows.Forms.Button();
 			this.onlSelectOperator = new System.Windows.Forms.Panel();
 			this.ckbDivide = new System.Windows.Forms.CheckBox();
 			this.ckbMultip = new System.Windows.Forms.CheckBox();
@@ -44,10 +45,10 @@
 			this.nudTime = new System.Windows.Forms.NumericUpDown();
 			this.nudMax = new System.Windows.Forms.NumericUpDown();
 			this.nudMin = new System.Windows.Forms.NumericUpDown();
-			this.label4 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
-			this.trkbMin = new System.Windows.Forms.Label();
+			this.lblCounts = new System.Windows.Forms.Label();
+			this.lblTime = new System.Windows.Forms.Label();
+			this.lblMax = new System.Windows.Forms.Label();
+			this.lblMin = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.timerRule = new System.Windows.Forms.Timer(this.components);
 			this.pnlMainMenu.SuspendLayout();
@@ -71,8 +72,9 @@
 			// 
 			// pnlMainMenu
 			// 
+			this.pnlMainMenu.Controls.Add(this.changeLang);
 			this.pnlMainMenu.Controls.Add(this.lblRules);
-			this.pnlMainMenu.Controls.Add(this.button1);
+			this.pnlMainMenu.Controls.Add(this.btnPlay);
 			this.pnlMainMenu.Controls.Add(this.onlSelectOperator);
 			this.pnlMainMenu.Controls.Add(this.pnlSelectOperand);
 			this.pnlMainMenu.Controls.Add(this.label1);
@@ -80,6 +82,17 @@
 			this.pnlMainMenu.Name = "pnlMainMenu";
 			this.pnlMainMenu.Size = new System.Drawing.Size(367, 318);
 			this.pnlMainMenu.TabIndex = 1;
+			// 
+			// changeLang
+			// 
+			this.changeLang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.changeLang.Location = new System.Drawing.Point(196, 240);
+			this.changeLang.Name = "changeLang";
+			this.changeLang.Size = new System.Drawing.Size(167, 36);
+			this.changeLang.TabIndex = 10;
+			this.changeLang.Text = "English Interface";
+			this.changeLang.UseVisualStyleBackColor = true;
+			this.changeLang.Click += new System.EventHandler(this.changeLang_Click);
 			// 
 			// lblRules
 			// 
@@ -93,15 +106,15 @@
 			this.lblRules.Text = "Rule label";
 			this.lblRules.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// button1
+			// btnPlay
 			// 
-			this.button1.Location = new System.Drawing.Point(104, 240);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(166, 36);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Bắt đầu!";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.btnPlay.Location = new System.Drawing.Point(3, 240);
+			this.btnPlay.Name = "btnPlay";
+			this.btnPlay.Size = new System.Drawing.Size(185, 36);
+			this.btnPlay.TabIndex = 9;
+			this.btnPlay.Text = "Bắt đầu!";
+			this.btnPlay.UseVisualStyleBackColor = true;
+			this.btnPlay.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// onlSelectOperator
 			// 
@@ -179,10 +192,10 @@
 			this.pnlSelectOperand.Controls.Add(this.nudTime);
 			this.pnlSelectOperand.Controls.Add(this.nudMax);
 			this.pnlSelectOperand.Controls.Add(this.nudMin);
-			this.pnlSelectOperand.Controls.Add(this.label4);
-			this.pnlSelectOperand.Controls.Add(this.label6);
-			this.pnlSelectOperand.Controls.Add(this.label5);
-			this.pnlSelectOperand.Controls.Add(this.trkbMin);
+			this.pnlSelectOperand.Controls.Add(this.lblCounts);
+			this.pnlSelectOperand.Controls.Add(this.lblTime);
+			this.pnlSelectOperand.Controls.Add(this.lblMax);
+			this.pnlSelectOperand.Controls.Add(this.lblMin);
 			this.pnlSelectOperand.Controls.Add(this.label2);
 			this.pnlSelectOperand.Location = new System.Drawing.Point(3, 55);
 			this.pnlSelectOperand.Name = "pnlSelectOperand";
@@ -191,9 +204,14 @@
 			// 
 			// nudCount
 			// 
-			this.nudCount.Location = new System.Drawing.Point(107, 148);
+			this.nudCount.Location = new System.Drawing.Point(117, 146);
+			this.nudCount.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
 			this.nudCount.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             0});
@@ -201,21 +219,21 @@
 			this.nudCount.Size = new System.Drawing.Size(55, 23);
 			this.nudCount.TabIndex = 4;
 			this.nudCount.Value = new decimal(new int[] {
-            45,
+            50,
             0,
             0,
             0});
 			// 
 			// nudTime
 			// 
-			this.nudTime.Location = new System.Drawing.Point(107, 113);
+			this.nudTime.Location = new System.Drawing.Point(117, 112);
 			this.nudTime.Maximum = new decimal(new int[] {
-            300,
+            600,
             0,
             0,
             0});
 			this.nudTime.Minimum = new decimal(new int[] {
-            10,
+            5,
             0,
             0,
             0});
@@ -230,7 +248,7 @@
 			// 
 			// nudMax
 			// 
-			this.nudMax.Location = new System.Drawing.Point(107, 78);
+			this.nudMax.Location = new System.Drawing.Point(117, 78);
 			this.nudMax.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -245,7 +263,7 @@
 			this.nudMax.Size = new System.Drawing.Size(55, 23);
 			this.nudMax.TabIndex = 2;
 			this.nudMax.Value = new decimal(new int[] {
-            10,
+            12,
             0,
             0,
             0});
@@ -253,7 +271,7 @@
 			// 
 			// nudMin
 			// 
-			this.nudMin.Location = new System.Drawing.Point(107, 44);
+			this.nudMin.Location = new System.Drawing.Point(117, 44);
 			this.nudMin.Maximum = new decimal(new int[] {
             999,
             0,
@@ -263,47 +281,47 @@
 			this.nudMin.Size = new System.Drawing.Size(55, 23);
 			this.nudMin.TabIndex = 1;
 			this.nudMin.Value = new decimal(new int[] {
-            3,
+            1,
             0,
             0,
             0});
 			this.nudMin.ValueChanged += new System.EventHandler(this.nudMin_ValueChanged);
 			// 
-			// label4
+			// lblCounts
 			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(10, 153);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(74, 15);
-			this.label4.TabIndex = 2;
-			this.label4.Text = "Số phép tính";
+			this.lblCounts.AutoSize = true;
+			this.lblCounts.Location = new System.Drawing.Point(10, 153);
+			this.lblCounts.Name = "lblCounts";
+			this.lblCounts.Size = new System.Drawing.Size(74, 15);
+			this.lblCounts.TabIndex = 2;
+			this.lblCounts.Text = "Số phép tính";
 			// 
-			// label6
+			// lblTime
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(10, 119);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(57, 15);
-			this.label6.TabIndex = 2;
-			this.label6.Text = "Thời gian";
+			this.lblTime.AutoSize = true;
+			this.lblTime.Location = new System.Drawing.Point(10, 119);
+			this.lblTime.Name = "lblTime";
+			this.lblTime.Size = new System.Drawing.Size(57, 15);
+			this.lblTime.TabIndex = 2;
+			this.lblTime.Text = "Thời gian";
 			// 
-			// label5
+			// lblMax
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(10, 84);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(29, 15);
-			this.label5.TabIndex = 2;
-			this.label5.Text = "Max";
+			this.lblMax.AutoSize = true;
+			this.lblMax.Location = new System.Drawing.Point(10, 84);
+			this.lblMax.Name = "lblMax";
+			this.lblMax.Size = new System.Drawing.Size(29, 15);
+			this.lblMax.TabIndex = 2;
+			this.lblMax.Text = "Max";
 			// 
-			// trkbMin
+			// lblMin
 			// 
-			this.trkbMin.AutoSize = true;
-			this.trkbMin.Location = new System.Drawing.Point(10, 50);
-			this.trkbMin.Name = "trkbMin";
-			this.trkbMin.Size = new System.Drawing.Size(28, 15);
-			this.trkbMin.TabIndex = 2;
-			this.trkbMin.Text = "Min";
+			this.lblMin.AutoSize = true;
+			this.lblMin.Location = new System.Drawing.Point(10, 50);
+			this.lblMin.Name = "lblMin";
+			this.lblMin.Size = new System.Drawing.Size(28, 15);
+			this.lblMin.TabIndex = 2;
+			this.lblMin.Text = "Min";
 			// 
 			// label2
 			// 
@@ -327,8 +345,10 @@
 			this.ClientSize = new System.Drawing.Size(368, 320);
 			this.Controls.Add(this.pnlMainMenu);
 			this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Name = "MainForm";
 			this.Text = "Math Minute";
+			this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
 			this.pnlMainMenu.ResumeLayout(false);
 			this.pnlMainMenu.PerformLayout();
 			this.onlSelectOperator.ResumeLayout(false);
@@ -354,18 +374,19 @@
 		private System.Windows.Forms.CheckBox ckbAdd;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Panel pnlSelectOperand;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.Label trkbMin;
+		private System.Windows.Forms.Label lblTime;
+		private System.Windows.Forms.Label lblMax;
+		private System.Windows.Forms.Label lblMin;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label lblCounts;
 		private System.Windows.Forms.NumericUpDown nudCount;
 		private System.Windows.Forms.NumericUpDown nudTime;
 		private System.Windows.Forms.NumericUpDown nudMax;
 		private System.Windows.Forms.NumericUpDown nudMin;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnPlay;
 		private System.Windows.Forms.Label lblRules;
 		private System.Windows.Forms.Timer timerRule;
+		private System.Windows.Forms.Button changeLang;
 	}
 }
 
