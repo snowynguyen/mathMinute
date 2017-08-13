@@ -16,3 +16,9 @@ Changes in version 1.1:
 - Show rules in Mainmenu
 - Font changed
 --------------------------------
+Changes in version 1.2
+- More detailed scoring
+- English translation
+- Timing system changed
+- Bug fixes
+--------------------------------
