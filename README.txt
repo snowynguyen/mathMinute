@@ -8,7 +8,7 @@ Author's name: Nguyen Nhat Nam.
 Facebook profile: fb.com/nhatnam2k3.
 Offical website: www.dkteam.tk.
 Offical fanpage: fb.com/DeathKingTeam.
-We guarantee that our products is safe, virusless and harmless.
+We guarantee that our products are harmless.
 We don't provide responsibility for products that weren't posted on our offical Facebook profile/fanpage, website or Github page.
 --------------------------------
 Changes in version 1.1:
@@ -16,7 +16,7 @@ Changes in version 1.1:
 - Show rules in Mainmenu
 - Font changed
 --------------------------------
-Changes in version 1.2
+Changes in version 1.2:
 - More detailed scoring
 - English translation
 - Timing system changed
